@@ -2,8 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { MongoClient } from "mongodb";
 import { compare } from "bcryptjs";
-
-
+import type { SessionStrategy } from "next-auth"; // <-- Add this import
 
 const client = new MongoClient(process.env.MONGODB_URI as string);
 
@@ -34,25 +33,25 @@ export const authOptions = {
       },
     }),
   ],
-  session: { strategy: "jwt" },
+  session: { strategy: "jwt" as SessionStrategy }, // <-- Use double quotes and type assertion
   secret: process.env.NEXTAUTH_SECRET,
- callbacks: {
-  async jwt({ token, user }: { token: any; user?: any }) {
-    if (user) {
-      token.username = user.username;
-      token.role = user.role;
-    }
-    return token;
-  },
-  async session({ session, token }: { session: any; token: any }) {
-    if (token) {
-      session.user.username = token.username;
-      session.user.role = token.role;
-      session.user.name = token.username;
-    }
-    return session;
-  },
-}
+  callbacks: {
+    async jwt({ token, user }: { token: any; user?: any }) {
+      if (user) {
+        token.username = user.username;
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token }: { session: any; token: any }) {
+      if (token) {
+        session.user.username = token.username;
+        session.user.role = token.role;
+        session.user.name = token.username;
+      }
+      return session;
+    },
+  }
 };
 
 const handler = NextAuth(authOptions);
