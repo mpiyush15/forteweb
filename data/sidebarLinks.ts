@@ -24,4 +24,22 @@ export const sidebarLinks = [
     label: "🧑‍💻 Profile",
     roles: ["user", "admin"],
   },
+  {
+    label: "📦 My Subscription",
+    href: "#",
+    children: [
+      {
+        label: "🔁 Renew",
+        href: "/dashboard/subscription/renew",
+      },
+      {
+        label: "❌ Cancel Subscription",
+        href: "/dashboard/subscription/cancel",
+      },
+      {
+        label: "📄 View Plan",
+        href: "/dashboard/subscription/view",
+      },
+    ],
+  },
 ];
