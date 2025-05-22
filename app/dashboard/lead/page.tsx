@@ -1,9 +1,20 @@
 import clientPromise from "@/lib/db";
+import { ObjectId } from "mongodb";
+
+type Lead = {
+  _id: ObjectId;
+  name: string;
+  email: string;
+  phone: string;
+  institute: string;
+  plan: string;
+  createdAt: Date;
+};
 
 export default async function AdminLeadsPage() {
-  const client = await clientPromise; //Wait for MongoDB to be connected before doing anything
-  const db = client.db("forteStudioz"); //match the name in your MongoDB Atlas
-  const leads = await db.collection("lead").find().sort({ createdAt: -1 }).toArray();
+  const client = await clientPromise;
+  const db = client.db("forteStudioz");
+  const leads = await db.collection<Lead>("lead").find().sort({ createdAt: -1 }).toArray();
 
   return (
     <div className="p-6">
@@ -20,8 +31,8 @@ export default async function AdminLeadsPage() {
           </tr>
         </thead>
         <tbody>
-          {leads.map((lead: any) => (
-            <tr key={lead._id}>
+          {leads.map((lead) => (
+            <tr key={lead._id.toString()}>
               <td className="p-2 border">{lead.name}</td>
               <td className="p-2 border">{lead.email}</td>
               <td className="p-2 border">{lead.phone}</td>
