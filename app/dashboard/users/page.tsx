@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
@@ -5,7 +6,8 @@ import clientPromise from "@/lib/db";
 
 export default async function AdminUsersPage() {
   // 🔐 Server-side session check
-  const session = await getServerSession(authOptions);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const session = await getServerSession(authOptions as any);
 
   if (!session || session.user.role !== "admin") {
     redirect("/unauthorized"); // 🚫 Redirect if not admin
