@@ -27,10 +27,13 @@ export const sidebarLinks = [
   {
     label: "📦 My Subscription",
     href: "#",
+    roles: ["user"],
     children: [
       {
         label: "🔁 Renew",
         href: "/dashboard/subscription/renew",
+        roles: ["user"],
+
       },
       {
         label: "❌ Cancel Subscription",
