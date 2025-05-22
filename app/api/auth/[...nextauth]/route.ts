@@ -3,7 +3,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { MongoClient } from "mongodb";
 import { compare } from "bcryptjs";
 import type { SessionStrategy } from "next-auth"; // <-- Add this import
-
+import type { Session, User } from "next-auth";
+import type { JWT } from "next-auth/jwt";
 const client = new MongoClient(process.env.MONGODB_URI as string);
 
 export const authOptions = {
@@ -36,23 +37,24 @@ export const authOptions = {
   session: { strategy: "jwt" as SessionStrategy }, // <-- Use double quotes and type assertion
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async jwt({ token, user }: { token: any; user?: any }) {
+    async jwt({ token, user }: { token: JWT; user?: User }) {
       if (user) {
         token.username = user.username;
         token.role = user.role;
       }
       return token;
     },
-    async session({ session, token }: { session: any; token: any }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       if (token) {
-        session.user.username = token.username;
+        session.user.username = token.username as string;
         session.user.role = token.role;
-        session.user.name = token.username;
+        session.user.name = token.username as string;
       }
       return session;
     },
   }
 };
+
 
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
