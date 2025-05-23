@@ -44,9 +44,10 @@ export default function Topbar({ userName, onToggleSidebar }: TopbarProps) {
       </button>
 
       {/* Welcome */}
-      <div className="flex items-c gap-2 nl-4">
-
       <p className="text-sm ">👋 Welcome, {userName}</p>
+      <div className="flex items-center gap-2 ml-auto">
+
+      
       {/* Dark Mode Toggle */}
       <DarkModeToggle />
       {/* Time */}

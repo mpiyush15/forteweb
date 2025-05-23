@@ -20,7 +20,7 @@ export default async function AdminLeadsPage() {
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">📋 Leads Submitted</h1>
       <table className="w-full text-left border border-gray-300">
-        <thead className="bg-gray-100">
+        <thead className="bg-gray-100 dark:bg-gray-800 text-black dark:text-white text-left">
           <tr>
             <th className="p-2 border">Name</th>
             <th className="p-2 border">Email</th>
@@ -32,7 +32,7 @@ export default async function AdminLeadsPage() {
         </thead>
         <tbody>
           {leads.map((lead) => (
-            <tr key={lead._id.toString()}>
+            <tr key={lead._id.toString()} className="hover:bg-gray-50 dark:hover:bg-gray-700">
               <td className="p-2 border">{lead.name}</td>
               <td className="p-2 border">{lead.email}</td>
               <td className="p-2 border">{lead.phone}</td>
