@@ -18,7 +18,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <aside
-      className={`fixed md:static w-64 h-screen bg-gray-800 text-white z-40 transform transition-transform duration-300 ${
+      className={`fixed md:static w-64 h-screen bg-gray-800 text-white z-40 transform transition-transform duration-300 flex flex-col ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } md:translate-x-0`}
     >
@@ -28,7 +28,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       </div>
 
       {/* Sidebar Content */}
-      <div className="p-4 space-y-6">
+      <div className="p-4 space-y-6 flex-1 ">
         <h2 className="text-xl font-bold">Dashboard</h2>
         <ul className="space-y-2">
           {sidebarLinks
