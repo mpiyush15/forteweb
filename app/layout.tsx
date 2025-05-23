@@ -31,7 +31,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          {children}
+           <main className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
+            {children}
+          </main>
         </Providers>
         
         

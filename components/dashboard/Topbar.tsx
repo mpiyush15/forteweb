@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import DarkModeToggle from "../DarkModeToggle";
 
 interface TopbarProps {
   userName: string;
@@ -31,9 +32,10 @@ export default function Topbar({ userName }: TopbarProps) {
   }, []);
 
   return (
-    <div className="w-full bg-white shadow-sm px-6 py-3 flex justify-between items-center">
-      <p className="text-gray-800 font-semibold">👋 Welcome, {userName}</p>
-      <p className="text-gray-600 text-sm font-medium">{dateTime}</p>
+    <div className="w-full bg-white dark:bg-gray-800 text-black dark:text-white shadow-lg   px-6 py-3 flex justify-between items-center  border border-gray-200 dark:border-gray-700 backdrop-blur-md">
+      <p className="font-semibold">👋 Welcome, {userName}</p>
+      <DarkModeToggle />
+      <p className=" text-sm font-medium">{dateTime}</p>
     </div>
   );
 }

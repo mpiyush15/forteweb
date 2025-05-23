@@ -23,7 +23,7 @@ export default async function DashboardLayout({
         {/* ✅ Pass username as prop */}
         <Topbar userName={username} />
         <SessionTimeout />
-        <main className="flex-1 p-6 bg-gray-100">{children}</main>
+        <main className="flex-1 p-6 bg-gray-100 dark:bg-gray-900 transition-colors">{children}</main>
       </div>
     </div>
   );
