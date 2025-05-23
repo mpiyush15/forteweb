@@ -50,8 +50,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex h-fit">
+    <div className="flex h-fit min-h-screen">
       {/* Image side */}
+      <div className="hidden md:block w-1/2 h-auto">
 <Image
   src="https://ik.imagekit.io/qitfmo5b1q/Login.1?updatedAt=1747978837528"
   alt="Forte Studioz Login Visual"
@@ -60,6 +61,7 @@ export default function LoginPage() {
   className="w-full h-full object-cover"
   priority
 />
+      </div>
 
       {/* Form side */}
       <div className="flex flex-col justify-center items-center w-full md:w-1/2 px-6 py-12 bg-white dark:bg-gray-900">
