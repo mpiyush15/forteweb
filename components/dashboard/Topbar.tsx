@@ -5,9 +5,10 @@ import DarkModeToggle from "../DarkModeToggle";
 
 interface TopbarProps {
   userName: string;
+  onToggleSidebar: () => void; // NEW: toggle sidebar
 }
 
-export default function Topbar({ userName }: TopbarProps) {
+export default function Topbar({ userName, onToggleSidebar }: TopbarProps) {
   const [dateTime, setDateTime] = useState("");
 
   useEffect(() => {
@@ -32,10 +33,25 @@ export default function Topbar({ userName }: TopbarProps) {
   }, []);
 
   return (
-    <div className="w-full bg-white dark:bg-gray-800 text-black dark:text-white shadow-lg   px-6 py-3 flex justify-between items-center  border border-gray-200 dark:border-gray-700 backdrop-blur-md">
-      <p className="font-semibold">👋 Welcome, {userName}</p>
+    <div className="w-full bg-white dark:bg-gray-800 text-black dark:text-white shadow-lg px-4 py-3 flex justify-between items-center border-b border-gray-200 dark:border-gray-700 backdrop-blur-md">
+      {/* Hamburger - Mobile Only */}
+      <button
+        onClick={onToggleSidebar}
+        className="md:hidden text-2xl mr-2"
+        aria-label="Toggle Sidebar"
+      >
+        ☰
+      </button>
+
+      {/* Welcome */}
+      <div className="flex items-c gap-2 nl-4">
+
+      <p className="text-sm ">👋 Welcome, {userName}</p>
+      {/* Dark Mode Toggle */}
       <DarkModeToggle />
-      <p className=" text-sm font-medium">{dateTime}</p>
+      {/* Time */}
+      <p className="hidden sm:inline text-sm font-medium ">{dateTime}</p>
+    </div>
     </div>
   );
 }

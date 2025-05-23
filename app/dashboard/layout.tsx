@@ -1,10 +1,7 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
-
-import Sidebar from "@/components/dashboard/Sidebar";
-import Topbar from "@/components/dashboard/Topbar";
-import SessionTimeout from "@/components/auth/SessionTimeout";
+import ClientDashboard from "@/components/dashboard/ClientDashboard";
 
 export default async function DashboardLayout({
   children,
@@ -14,17 +11,9 @@ export default async function DashboardLayout({
   const session = await getServerSession(authOptions);
   if (!session) redirect("/login");
 
-  const username = session.user?.name || session.user?.email || "User";
-
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <div className="flex-1 flex flex-col">
-        {/* ✅ Pass username as prop */}
-        <Topbar userName={username} />
-        <SessionTimeout />
-        <main className="flex-1 p-6 bg-gray-100 dark:bg-gray-900 transition-colors">{children}</main>
-      </div>
-    </div>
+    <ClientDashboard userName={session.user?.username || "User"}>
+      {children}
+    </ClientDashboard>
   );
 }
