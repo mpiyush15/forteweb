@@ -3,16 +3,9 @@ import { authOptions } from "@/lib/authOptions";
 import { redirect } from "next/navigation";
 import clientPromise from "@/lib/db";
 import { ObjectId } from "mongodb";
-import type { Session } from "next-auth";
-
-type Props = {
-  params: {
-    id: string;
-  };
-};
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const session: Session | null = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
   if (!session || session.user?.role !== "admin") {
     redirect("/unauthorized");
@@ -20,7 +13,6 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   const client = await clientPromise;
   const db = client.db("forteStudioz");
-
   const user = await db.collection("users").findOne({ _id: new ObjectId(params.id) });
 
   if (!user) {
