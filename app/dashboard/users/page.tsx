@@ -53,6 +53,7 @@ export default async function AdminUsersPage() {
             </tr>
           ))}
         </tbody>
+        
       </table>
     </div>
   );
