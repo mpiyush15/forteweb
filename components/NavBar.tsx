@@ -59,9 +59,12 @@ export default function Navbar() {
                   <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"><Link href="/services/video-editing">Video Editing</Link></li>
                   <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"><Link href="/services/facebook-marketing">Facebook Marketing</Link></li>
                   <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"><Link href="/services/instagram-marketing">Instagram Marketing</Link></li>
+                
                 </ul>
+                
               )}
             </li>
+            <li><Link href="/plans">Pricing</Link></li>
             <li><Link href="/contact">Contact Us</Link></li>
             
             <li>
@@ -94,6 +97,7 @@ export default function Navbar() {
               <Link href="/services/instagram-marketing" className="block">Instagram Marketing</Link>
             </div>
           )}
+          <Link href="/plans" className="block">Pricing</Link>
           <Link href="/contact" className="block">Contact Us</Link>
           <Link href="/login" className="block">Login</Link>
           <button onClick={toggleTheme} className="mt-2 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded">
