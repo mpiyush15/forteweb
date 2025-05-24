@@ -11,7 +11,7 @@ type Props = {
   };
 };
 
-export default async function UserProfilePage({ params }: Props) {
+export default async function Page({ params }: { params: { id: string } }) {
   const session: Session | null = await getServerSession(authOptions);
 
   if (!session || session.user?.role !== "admin") {
