@@ -34,25 +34,34 @@ export default async function AdminUsersPage() {
       <h1 className="text-2xl font-bold mb-4">👥 All Users</h1>
       <table className="w-full border border-gray-600 rounded">
         <thead className="bg-gray-100 dark:bg-gray-800 text-black dark:text-white text-left">
-          <tr>
-            <th className="p-2">Username</th>
-            <th className="p-2">Email</th>
-            <th className="p-2">Role</th>
-            <th className="p-2">Plan</th>
-            <th className="p-2">Subscribed</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user._id.toString()} className="border-t border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700">
-              <td className="p-2">{user.username}</td>
-              <td className="p-2">{user.email}</td>
-              <td className="p-2 font-medium text-blue-600">{user.role}</td>
-              <td className="p-2">{user.plan || "-"}</td>
-              <td className="p-2">{user.subscribed ? "✅ Yes" : "❌ No"}</td>
-            </tr>
-          ))}
-        </tbody>
+  <tr>
+    <th className="p-2">Username</th>
+    <th className="p-2">Email</th>
+    <th className="p-2">Role</th>
+    <th className="p-2">Plan</th>
+    <th className="p-2">Subscribed</th>
+    <th className="p-2">Action</th> {/* 👈 New column */}
+  </tr>
+</thead>
+<tbody>
+  {users.map((user) => (
+    <tr key={user._id.toString()} className="border-t border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700">
+      <td className="p-2">{user.username}</td>
+      <td className="p-2">{user.email}</td>
+      <td className="p-2 font-medium text-blue-600">{user.role}</td>
+      <td className="p-2">{user.plan || "-"}</td>
+      <td className="p-2">{user.subscribed ? "✅ Yes" : "❌ No"}</td>
+      <td className="p-2">
+        <a
+          href={`/dashboard/users/${user._id.toString()}`}
+          className="text-blue-500 hover:underline"
+        >
+          View
+        </a>
+      </td>
+    </tr>
+  ))}
+</tbody>
       </table>
     </div>
   );
