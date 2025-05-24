@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 import clientPromise from "@/lib/db";
 import { ObjectId } from "mongodb";
 import type { Session } from "next-auth";
-import Link from "next/link";
 
 type AppUser = {
   _id: ObjectId;
@@ -53,12 +52,7 @@ export default async function AdminUsersPage() {
               <td className="p-2">{user.plan || "-"}</td>
               <td className="p-2">{user.subscribed ? "✅ Yes" : "❌ No"}</td>
               <td>
-              <Link
-                href={`/dashboard/users/${user._id.toString()}`}
-                className="text-blue-500 hover:underline"
-              >
-                View
-              </Link>
+              
             </td>
 
             </tr>
