@@ -2,7 +2,7 @@ export const sidebarLinks = [
   {
     href: "/dashboard/home",
     label: "🏠 Home",
-    roles: ["admin", "user"], // visible to all
+    roles: ["admin", "user", "subscriber"],
   },
   {
     href: "/dashboard/lead",
@@ -20,20 +20,13 @@ export const sidebarLinks = [
     roles: ["admin"],
   },
   {
-    href: "/dashboard/profile",
-    label: "🧑‍💻 Profile",
-    roles: ["user", "admin"],
-  },
-  {
     label: "📦 My Subscription",
     href: "#",
-    roles: ["user"],
+    roles: ["user", "subscriber"],
     children: [
       {
         label: "🔁 Renew",
         href: "/dashboard/subscription/renew",
-        roles: ["user"],
-
       },
       {
         label: "❌ Cancel Subscription",
@@ -44,5 +37,52 @@ export const sidebarLinks = [
         href: "/dashboard/subscription/view",
       },
     ],
+  },
+  {
+    label: "📱 Social Media",
+    href: "#",
+    roles: ["subscriber", "admin" , "user"],
+    children: [
+      {
+        label: "📝 Posts",
+        href: "/dashboard/social/posts",
+      },
+      {
+        label: "📅 Content Plan",
+        href: "/dashboard/social/plan",
+      },
+      {
+        label: "📊 Reports",
+        href: "/dashboard/social/reports",
+      },
+    ],
+  },
+  {
+    label: "💬 WhatsApp",
+    href: "#",
+    roles: ["subscriber", "admin"],
+    children: [
+      {
+        label: "📨 Campaigns",
+        href: "/dashboard/whatsapp/campaigns",
+      },
+      {
+        label: "👥 Contacts",
+        href: "/dashboard/whatsapp/contacts",
+      },
+      {
+        label: "📈 Reports",
+        href: "/dashboard/whatsapp/reports",
+      },
+      {
+        label: "⚙️ Settings",
+        href: "/dashboard/whatsapp/settings",
+      },
+    ],
+  },
+  {
+    href: "/dashboard/profile",
+    label: "🧑‍💻 Profile",
+    roles: ["admin", "user", "subscriber"],
   },
 ];

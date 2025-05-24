@@ -1,14 +1,12 @@
-// lib/authOptions.ts
-
+import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { MongoClient } from "mongodb";
 import { compare } from "bcryptjs";
-import type { NextAuthOptions, User, Session } from "next-auth";
-import type { JWT } from "next-auth/jwt";
 
+// You may also store this client in `lib/db.ts` and import from there
 const client = new MongoClient(process.env.MONGODB_URI as string);
 
-export const authOptions: NextAuthOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -17,39 +15,53 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        if (!credentials?.username || !credentials.password) return null;
+
         await client.connect();
         const db = client.db("forteStudioz");
-        const user = await db.collection("users").findOne({ username: credentials?.username });
+
+        const user = await db.collection("users").findOne({
+          username: credentials.username,
+        });
 
         if (!user) return null;
 
-        const isValid = await compare(credentials!.password, user.password);
+        const isValid = await compare(credentials.password, user.password);
         if (!isValid) return null;
 
+        // Return only required fields to session
         return {
           id: user._id.toString(),
           username: user.username,
           email: user.email,
           role: user.role || "user",
+          tenantId: user.tenantId || "default",
         };
       },
     }),
   ],
-  session: { strategy: "jwt" },
+
+  session: {
+    strategy: "jwt",
+  },
+
   secret: process.env.NEXTAUTH_SECRET,
+
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user?: User }) {
+    async jwt({ token, user }) {
       if (user) {
         token.username = user.username;
         token.role = user.role;
+        token.tenantId = user.tenantId;
       }
       return token;
     },
-    async session({ session, token }: { session: Session; token: JWT }) {
+
+    async session({ session, token }) {
       if (token) {
-        session.user.username = token.username as string;
-        session.user.role = token.role as string;
-        session.user.name = token.username as string;
+        session.user.username = token.username;
+        session.user.role = token.role;
+        session.user.tenantId = token.tenantId;
       }
       return session;
     },

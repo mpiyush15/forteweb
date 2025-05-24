@@ -1,5 +1,4 @@
-"use client";
-
+import { useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { sidebarLinks } from "@/data/sidebarLinks";
@@ -13,6 +12,7 @@ interface SidebarProps {
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { data: session, status } = useSession();
   const role = session?.user?.role || "user";
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   if (status === "loading") return null;
 
@@ -28,19 +28,49 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       </div>
 
       {/* Sidebar Content */}
-      <div className="p-4 space-y-6 flex-1 ">
+      <div className="p-4 space-y-6 flex-1">
         <h2 className="text-xl font-bold">Dashboard</h2>
         <ul className="space-y-2">
           {sidebarLinks
             .filter((link) => link.roles.includes(role))
             .map((link) => (
               <li key={link.label}>
-                <Link
-                  href={link.href}
-                  className="block px-4 py-2 rounded bg-gray-700 hover:bg-blue-600 transition-all"
-                >
-                  {link.label}
-                </Link>
+                {link.children ? (
+                  <div>
+                    <button
+                      className="w-full flex justify-between items-center px-4 py-2 rounded bg-gray-700 hover:bg-blue-600 transition-all"
+                      onClick={() =>
+                        setOpenDropdown(openDropdown === link.label ? null : link.label)
+                      }
+                    >
+                      <span>{link.label}</span>
+                      <span>{openDropdown === link.label ? "▲" : "▼"}</span>
+                    </button>
+                    {openDropdown === link.label && (
+                      <ul className="ml-4 mt-1 space-y-1">
+                        {link.children.map((child) => (
+                          <li key={child.href}>
+                            <Link
+                              href={child.href}
+                              className="block px-3 py-1 rounded bg-gray-700 hover:bg-blue-600 text-sm transition-all"
+                              onClick={onClose}
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="block px-4 py-2 rounded bg-gray-700 hover:bg-blue-600 transition-all"
+                    onClick={onClose}
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
         </ul>
