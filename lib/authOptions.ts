@@ -53,6 +53,7 @@ export const authOptions: AuthOptions = {
         token.username = user.username;
         token.role = user.role;
         token.tenantId = user.tenantId;
+        token.userId = user.id; // Ensure userId is included
       }
       return token;
     },
@@ -62,6 +63,8 @@ export const authOptions: AuthOptions = {
         session.user.username = token.username;
         session.user.role = token.role;
         session.user.tenantId = token.tenantId;
+        session.user.userId = token.userId; // Ensure userId is included in session
+        
       }
       return session;
     },

@@ -1,10 +1,10 @@
-import SubscriptionCards from "@/components/SubscriptionCards";
+import SubscribePlans from "../../components/plans/SubscribePlans";
 
-export default function SubscriptionsPage() {
+export default function SubscriptionPage() {
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <h1 className="text-3xl font-bold text-center mb-8">Choose Your Plan</h1>
-      <SubscriptionCards />
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Choose a Plan</h1>
+      <SubscribePlans />
     </div>
   );
 }

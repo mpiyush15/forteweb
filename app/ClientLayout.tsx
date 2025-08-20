@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const hideNavAndFooter = pathname === "/login";
+  // const hideNavAndFooter = pathname === "/login";
+  const hideNavAndFooter = pathname.startsWith("/login");
 
   return (
     <>

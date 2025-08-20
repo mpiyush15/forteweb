@@ -1,26 +1,37 @@
-const plans = [
+// data/plansData.ts
+
+
+export const plans = [
   {
     id: "free",
-    name: "Free Plan",
-    price: "₹0 / forever",
-    description: "Best for getting started with our platform.",
-    features: ["Limited access", "Basic tools", "Community support"],
+    title: "Free Trial",
+    planId: "free_trial",
+    planName: "Free Trial",
+    price: "0",
+    description: "Try our platform for 7 days, no credit card needed.",
+    features: [
+      "Access social media templates",
+      "WhatsApp insights (limited)",
+      "1 Client Profile",
+      "Limited Reports View",
+    ],
+    buttonLabel: "Start Free Trial",
+    isFree: true,
   },
   {
-    id: "monthly",
-    name: "Monthly Plan",
-    price: "₹499 / month",
-    description: "Perfect for short-term goals, trials, or testing new ideas.",
-    features: ["All basic features", "Priority support", "Cancel anytime"],
-  },
-  {
-    id: "yearly",
-    name: "Yearly Plan",
-    price: "₹3999 / year",
-    description: "Ideal for long-term use. Get 3 months free!",
-    features: ["Everything in monthly", "Free custom domain", "3 bonus months"],
+    id: "pro",
+    planId: "pro_plan",
+    planName: "Pro Plan",
+    title: "Pro Plan",
+    price: "999",
+    description: "Everything you need to manage your online growth.",
+    features: [
+      "Unlimited client uploads",
+      "Full reports dashboard",
+      "WhatsApp Automation",
+      "Priority Support",
+    ],
+    buttonLabel: "Subscribe Now",
+    isFree: false,
   },
 ];
-
-// Export the plans array as the default export
-export default plans;

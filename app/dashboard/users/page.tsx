@@ -51,6 +51,14 @@ export default async function AdminUsersPage() {
               <td className="p-2 font-medium text-blue-600">{user.role}</td>
               <td className="p-2">{user.plan || "-"}</td>
               <td className="p-2">{user.subscribed ? "✅ Yes" : "❌ No"}</td>
+              <td className="p-2">
+                 <a
+                   href={`/dashboard/users/${user._id}/stats`}
+                   className="text-blue-600 underline"
+                  >
+                   Update Stats
+                    </a>      
+            </td>   
               <td>
               
             </td>
