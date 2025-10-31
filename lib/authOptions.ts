@@ -110,7 +110,7 @@ export const authOptions: AuthOptions = {
     // NEW: Handle Facebook Business account linking
     async signIn({ account}) {
       if (account?.provider === "facebook") {
-        await client.connect();
+        //await client.connect();
         //const db = client.db("forteStudioz");
         
         // Link Facebook Business to existing tenant
