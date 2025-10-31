@@ -108,10 +108,10 @@ export const authOptions: AuthOptions = {
     },
 
     // NEW: Handle Facebook Business account linking
-    async signIn({ user, account, profile }) {
+    async signIn({ account}) {
       if (account?.provider === "facebook") {
         await client.connect();
-        const db = client.db("forteStudioz");
+        //const db = client.db("forteStudioz");
         
         // Link Facebook Business to existing tenant
         // This assumes user is already logged in with credentials
