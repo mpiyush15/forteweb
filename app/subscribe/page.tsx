@@ -3,11 +3,12 @@ import { plans } from "@/data/plans";
 import SubscriptionForm from "./form/page"; // Adjust the import path as necessary
 
 type Props = {
-  params: { planId: string };
+  params: Promise<{ planId: string }>; // ✅ Now a Promise
 };
 
-export default function SubscriptionPage({ params }: Props) {
-  const plan = plans.find((p) => p.planId === params.planId); // ✅ Match by planId
+export default async function SubscriptionPage({ params }: Props) {
+  const { planId } = await params; // ✅ Await the params
+  const plan = plans.find((p) => p.planId === planId);
 
   if (!plan) return <div className="p-6">❌ Plan not found</div>;
 
