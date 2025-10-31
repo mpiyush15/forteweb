@@ -10,6 +10,12 @@ declare module "next-auth" {
       tenantId?: string; // ✅ Important for multi-tenant
       userId?: string; // Ensure userId is included
     };
+    // ✅ Facebook Business fields
+    facebookAccessToken?: string;
+    facebookUserId?: string;
+    facebookPermissions?: string[];
+    hasWhatsAppAccess?: boolean;
+    hasAdsAccess?: boolean;
   }
 
   interface User extends DefaultUser {
@@ -28,5 +34,10 @@ declare module "next-auth/jwt" {
     role?: string;
     userId?: string; // Ensure userId is included
     tenantId?: string; // ✅ Add tenantId to JWT token
+    // ✅ Facebook Business fields
+    facebookAccessToken?: string;
+    facebookUserId?: string;
+    facebookPermissions?: string[];
+    facebookTokenExpiry?: number;
   }
 }
