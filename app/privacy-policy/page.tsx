@@ -18,7 +18,7 @@ export default function PrivacyPage() {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
           <p>
-            Welcome to Pixels Digital ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform and services.
+            Welcome to Pixels Digital (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;). We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform and services.
           </p>
           <p>
             By using our services, you agree to the collection and use of information in accordance with this Privacy Policy.
@@ -139,7 +139,7 @@ export default function PrivacyPage() {
           <h3 className="text-xl font-semibold mb-3">4.1 Facebook/Meta Integration</h3>
           <p>We integrate with Facebook/Meta services to provide WhatsApp and Ads management functionality. Your use of these features is subject to:</p>
           <ul className="list-disc ml-6">
-            <li><a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Facebook's Data Policy</a></li>
+            <li><a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Facebook&apos;s Data Policy</a></li>
             <li><a href="https://business.whatsapp.com/policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">WhatsApp Business Policy</a></li>
             <li><a href="https://www.facebook.com/terms.php" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Meta Terms of Service</a></li>
           </ul>
@@ -187,7 +187,7 @@ export default function PrivacyPage() {
           <ul className="list-disc ml-6">
             <li>Each business account (tenant) has isolated data</li>
             <li>Tenant data is segregated using unique identifiers</li>
-            <li>No tenant can access another tenant's data</li>
+            <li>No tenant can access another tenant&apos;s data</li>
             <li>Administrative access is strictly controlled</li>
           </ul>
         </section>
