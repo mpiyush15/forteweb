@@ -7,6 +7,8 @@ import { compare } from "bcryptjs";
 const client = new MongoClient(process.env.MONGODB_URI as string);
 
 export const authOptions: AuthOptions = {
+  debug: true, // Enable NextAuth debug mode
+  
   providers: [
     // Existing Credentials Provider
     CredentialsProvider({
@@ -16,6 +18,8 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        console.log('=== Credentials Login Attempt ===');
+        
         if (!credentials?.username || !credentials.password) return null;
 
         await client.connect();
@@ -25,11 +29,18 @@ export const authOptions: AuthOptions = {
           username: credentials.username,
         });
 
-        if (!user) return null;
+        if (!user) {
+          console.log('User not found:', credentials.username);
+          return null;
+        }
 
         const isValid = await compare(credentials.password, user.password);
-        if (!isValid) return null;
+        if (!isValid) {
+          console.log('Invalid password for user:', credentials.username);
+          return null;
+        }
 
+        console.log('Login successful:', credentials.username);
         return {
           id: user._id.toString(),
           username: user.username,
@@ -40,7 +51,7 @@ export const authOptions: AuthOptions = {
       },
     }),
 
-    // NEW: Facebook Business Provider (Unified for WhatsApp + Ads)
+    // Facebook Business Provider
     FacebookProvider({
       clientId: process.env.FACEBOOK_APP_ID as string,
       clientSecret: process.env.FACEBOOK_APP_SECRET as string,
@@ -68,7 +79,10 @@ export const authOptions: AuthOptions = {
 
   callbacks: {
     async jwt({ token, user, account }) {
-      // Existing credentials logic
+      console.log('=== JWT Callback ===');
+      console.log('Provider:', account?.provider);
+      console.log('User:', user?.email);
+      
       if (user) {
         token.username = user.username;
         token.role = user.role;
@@ -76,8 +90,12 @@ export const authOptions: AuthOptions = {
         token.userId = user.id;
       }
       
-      // NEW: Handle Facebook Business connection
       if (account?.provider === "facebook") {
+        console.log('=== Facebook OAuth Success ===');
+        console.log('Access Token:', account.access_token ? 'Present' : 'Missing');
+        console.log('Scopes:', account.scope);
+        console.log('Expires at:', account.expires_at);
+        
         token.facebookAccessToken = account.access_token;
         token.facebookUserId = account.providerAccountId;
         token.facebookPermissions = account.scope?.split(',') || [];
@@ -88,35 +106,31 @@ export const authOptions: AuthOptions = {
     },
 
     async session({ session, token }) {
-      // Existing session data
+      console.log('=== Session Callback ===');
+      console.log('Token username:', token.username);
+      console.log('Has Facebook token:', !!token.facebookAccessToken);
+      
       if (token) {
         session.user.username = token.username;
         session.user.role = token.role;
         session.user.tenantId = token.tenantId;
         session.user.userId = token.userId;
         
-        // NEW: Add Facebook Business data to session
         session.facebookAccessToken = token.facebookAccessToken;
         session.facebookUserId = token.facebookUserId;
         session.facebookPermissions = token.facebookPermissions;
-        
-        // Check which modules are available
         session.hasWhatsAppAccess = token.facebookPermissions?.includes('whatsapp_business_messaging');
         session.hasAdsAccess = token.facebookPermissions?.includes('ads_management');
       }
       return session;
     },
 
-    // NEW: Handle Facebook Business account linking
-    async signIn({ account}) {
+    async signIn({ account }) {
+      console.log('=== SignIn Callback ===');
+      console.log('Provider:', account?.provider);
+      
       if (account?.provider === "facebook") {
-        //await client.connect();
-        //const db = client.db("forteStudioz");
-        
-        // Link Facebook Business to existing tenant
-        // This assumes user is already logged in with credentials
-        // We'll handle this flow in the UI
-        
+        console.log('Facebook sign-in allowed');
         return true;
       }
       return true;
@@ -125,5 +139,6 @@ export const authOptions: AuthOptions = {
 
   pages: {
     signIn: '/login',
+    error: '/auth/error', // Custom error page
   },
 };
