@@ -2,6 +2,7 @@
 
 import { useSession, signIn } from 'next-auth/react';
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function FacebookBusinessSettings() {
   const { data: session } = useSession();
@@ -33,6 +34,15 @@ export default function FacebookBusinessSettings() {
             <li>Meta Ads Manager</li>
             <li>Business Analytics</li>
           </ul>
+
+          <Link 
+  href="/admin" 
+  target="_blank"
+  className="inline-flex items-center justify-center px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
+>
+  Open CMS
+</Link>
+
 
           <button
             onClick={handleConnect}
@@ -69,6 +79,7 @@ export default function FacebookBusinessSettings() {
           >
             Reconnect
           </button>
+  
         </div>
       )}
     </div>
