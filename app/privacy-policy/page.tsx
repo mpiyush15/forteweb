@@ -1,127 +1,236 @@
-export default function PrivacyPolicy() {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Pixels Digital",
+  description: "Privacy Policy for Pixels Digital platform",
+};
+
+export default function PrivacyPage() {
   return (
-    <div style={{ 
-      maxWidth: '800px', 
-      margin: '40px auto', 
-      padding: '20px',
-      fontFamily: 'system-ui, -apple-system, sans-serif',
-      lineHeight: '1.6'
-    }}>
-      <h1>Privacy Policy</h1>
-      <p><strong>Last updated:</strong> {new Date().toLocaleDateString()}</p>
-
-      <h2>1. Introduction</h2>
-      <p>
-        Welcome to Pixels Digital ("we," "our," or "us"). This Privacy Policy explains how we collect, 
-        use, and protect your information when you use our Facebook Ads management application.
+    <div className="container mx-auto px-4 py-12 max-w-4xl">
+      <h1 className="text-4xl font-bold mb-4">Privacy Policy</h1>
+      <p className="text-sm text-gray-600 mb-8">
+        <strong>Effective Date:</strong> November 1, 2025<br />
+        <strong>Last Updated:</strong> November 1, 2025
       </p>
 
-      <h2>2. Information We Collect</h2>
-      <p>When you use our application, we may collect:</p>
-      <ul>
-        <li>Your Facebook profile information (name, email address)</li>
-        <li>Facebook Ad Account information you authorize us to access</li>
-        <li>Campaign, ad set, and ad performance data from your Facebook Ad Accounts</li>
-        <li>Usage data and analytics to improve our service</li>
-      </ul>
+      <div className="prose prose-lg max-w-none">
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
+          <p>
+            Welcome to Pixels Digital ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform and services.
+          </p>
+          <p>
+            By using our services, you agree to the collection and use of information in accordance with this Privacy Policy.
+          </p>
+        </section>
 
-      <h2>3. How We Use Your Information</h2>
-      <p>We use the information we collect to:</p>
-      <ul>
-        <li>Provide and maintain our Facebook Ads management service</li>
-        <li>Display your ad campaigns and performance metrics</li>
-        <li>Authenticate and authorize your access to the application</li>
-        <li>Improve and optimize our services</li>
-        <li>Communicate with you about service updates</li>
-      </ul>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">1. Information We Collect</h2>
+          
+          <h3 className="text-xl font-semibold mb-3">1.1 Information You Provide</h3>
+          
+          <div className="mb-4">
+            <h4 className="font-semibold mb-2">Account Information:</h4>
+            <ul className="list-disc ml-6">
+              <li>Username and email address</li>
+              <li>Business name and details</li>
+              <li>Password (encrypted and securely stored)</li>
+              <li>Contact information</li>
+            </ul>
+          </div>
 
-      <h2>4. Data Storage and Security</h2>
-      <p>
-        We store your Facebook access tokens securely and encrypted in our database. 
-        We implement industry-standard security measures to protect your data from unauthorized access.
-      </p>
+          <div className="mb-4">
+            <h4 className="font-semibold mb-2">Facebook Business Connection:</h4>
+            <ul className="list-disc ml-6">
+              <li>Facebook account information (name, email, user ID)</li>
+              <li>Business Manager account details</li>
+              <li>WhatsApp Business Account information</li>
+              <li>Meta Ads account information</li>
+              <li>Permissions and access tokens</li>
+            </ul>
+          </div>
 
-      <h2>5. Data Sharing</h2>
-      <p>
-        We do not sell, trade, or share your personal information with third parties except:
-      </p>
-      <ul>
-        <li>When required by law or to comply with legal obligations</li>
-        <li>To Facebook, as necessary to provide the service via Facebook's Marketing API</li>
-        <li>With your explicit consent</li>
-      </ul>
+          <div className="mb-4">
+            <h4 className="font-semibold mb-2">WhatsApp Data:</h4>
+            <ul className="list-disc ml-6">
+              <li>WhatsApp Business phone number</li>
+              <li>Contact lists and customer information</li>
+              <li>Message content (sent and received)</li>
+              <li>Message templates and campaigns</li>
+              <li>Delivery and read receipts</li>
+            </ul>
+          </div>
 
-      <h2>6. Facebook Permissions</h2>
-      <p>Our application requests the following Facebook permissions:</p>
-      <ul>
-        <li><strong>ads_management:</strong> To manage and create ads on your behalf</li>
-        <li><strong>ads_read:</strong> To read and display your ad campaign data</li>
-        <li><strong>business_management:</strong> To access Business Manager features</li>
-      </ul>
-      <p>
-        You can revoke these permissions at any time through your Facebook settings at 
-        <a href="https://www.facebook.com/settings?tab=applications" target="_blank" rel="noopener noreferrer">
-          https://www.facebook.com/settings?tab=applications
-        </a>
-      </p>
+          <div className="mb-4">
+            <h4 className="font-semibold mb-2">Meta Ads Data:</h4>
+            <ul className="list-disc ml-6">
+              <li>Ad account information</li>
+              <li>Campaign data and performance metrics</li>
+              <li>Ad spend and budget information</li>
+              <li>Audience insights and demographics</li>
+            </ul>
+          </div>
 
-      <h2>7. Data Retention</h2>
-      <p>
-        We retain your data for as long as your account is active or as needed to provide services. 
-        You may request deletion of your data at any time by contacting us.
-      </p>
+          <h3 className="text-xl font-semibold mb-3 mt-6">1.2 Automatically Collected Information</h3>
+          <p>We automatically collect certain information when you use our platform, including:</p>
+          <ul className="list-disc ml-6">
+            <li>IP address and browser type</li>
+            <li>Device information</li>
+            <li>Pages visited and features used</li>
+            <li>Time and date of access</li>
+            <li>Session cookies for authentication</li>
+          </ul>
+        </section>
 
-      <h2>8. Your Rights</h2>
-      <p>You have the right to:</p>
-      <ul>
-        <li>Access the personal data we hold about you</li>
-        <li>Request correction of inaccurate data</li>
-        <li>Request deletion of your data</li>
-        <li>Withdraw consent for data processing</li>
-        <li>Disconnect your Facebook account from our application</li>
-      </ul>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">2. How We Use Your Information</h2>
+          
+          <h3 className="text-xl font-semibold mb-3">2.1 Service Delivery</h3>
+          <ul className="list-disc ml-6">
+            <li>Provide and maintain our platform services</li>
+            <li>Enable WhatsApp messaging functionality</li>
+            <li>Display Meta Ads campaign data and insights</li>
+            <li>Process and deliver notifications</li>
+            <li>Manage your account and subscriptions</li>
+          </ul>
 
-      <h2>9. Cookies and Tracking</h2>
-      <p>
-        We may use cookies and similar tracking technologies to improve user experience 
-        and analyze usage patterns.
-      </p>
+          <h3 className="text-xl font-semibold mb-3 mt-6">2.2 Communication</h3>
+          <ul className="list-disc ml-6">
+            <li>Send transactional emails and notifications</li>
+            <li>Provide customer support</li>
+            <li>Respond to your inquiries</li>
+            <li>Send important service updates</li>
+          </ul>
 
-      <h2>10. Third-Party Services</h2>
-      <p>
-        Our application uses Facebook's Marketing API. Your use of Facebook is also governed by 
-        Facebook's own privacy policy available at 
-        <a href="https://www.facebook.com/privacy/explanation" target="_blank" rel="noopener noreferrer">
-          https://www.facebook.com/privacy/explanation
-        </a>
-      </p>
+          <h3 className="text-xl font-semibold mb-3 mt-6">2.3 Security and Compliance</h3>
+          <ul className="list-disc ml-6">
+            <li>Prevent fraud and unauthorized access</li>
+            <li>Enforce our Terms of Service</li>
+            <li>Comply with legal obligations</li>
+            <li>Protect user rights and safety</li>
+          </ul>
+        </section>
 
-      <h2>11. Children's Privacy</h2>
-      <p>
-        Our service is not directed to individuals under the age of 18. We do not knowingly 
-        collect personal information from children.
-      </p>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">3. Data Storage and Security</h2>
+          
+          <h3 className="text-xl font-semibold mb-3">3.1 Security Measures</h3>
+          <ul className="list-disc ml-6">
+            <li>Industry-standard encryption (SSL/TLS)</li>
+            <li>Secure authentication with NextAuth.js</li>
+            <li>Password hashing using bcrypt</li>
+            <li>Multi-tenant data isolation</li>
+            <li>Regular security audits and updates</li>
+          </ul>
 
-      <h2>12. Changes to This Privacy Policy</h2>
-      <p>
-        We may update this Privacy Policy from time to time. We will notify you of any changes 
-        by posting the new policy on this page and updating the "Last updated" date.
-      </p>
+          <h3 className="text-xl font-semibold mb-3 mt-6">3.2 Data Retention</h3>
+          <ul className="list-disc ml-6">
+            <li>Account data retained while your account is active</li>
+            <li>WhatsApp message data retained for 90 days (configurable)</li>
+            <li>Meta Ads data cached for 30 days</li>
+            <li>Deleted account data purged within 30 days</li>
+          </ul>
+        </section>
 
-      <h2>13. Contact Us</h2>
-      <p>
-        If you have questions about this Privacy Policy or our data practices, please contact us at:
-      </p>
-      <ul>
-        <li><strong>Email:</strong> privacy@pixelsdigital.com</li>
-        <li><strong>Website:</strong> https://webhook-test-beta-five.vercel.app</li>
-      </ul>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">4. Third-Party Services</h2>
+          
+          <h3 className="text-xl font-semibold mb-3">4.1 Facebook/Meta Integration</h3>
+          <p>We integrate with Facebook/Meta services to provide WhatsApp and Ads management functionality. Your use of these features is subject to:</p>
+          <ul className="list-disc ml-6">
+            <li><a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Facebook's Data Policy</a></li>
+            <li><a href="https://business.whatsapp.com/policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">WhatsApp Business Policy</a></li>
+            <li><a href="https://www.facebook.com/terms.php" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Meta Terms of Service</a></li>
+          </ul>
+        </section>
 
-      <h2>14. Compliance</h2>
-      <p>
-        This Privacy Policy complies with Facebook Platform Terms and Meta's Platform Policy, 
-        including requirements for user data protection and transparency.
-      </p>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">5. Data Sharing and Disclosure</h2>
+          
+          <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+            <p className="font-semibold">We Do NOT Sell Your Data</p>
+            <p className="text-sm">We do not sell, rent, or trade your personal information to third parties for marketing purposes.</p>
+          </div>
+
+          <h3 className="text-xl font-semibold mb-3">We May Share Information With:</h3>
+          <ul className="list-disc ml-6">
+            <li><strong>Service Providers:</strong> Cloud hosting (Vercel, MongoDB), email services, analytics</li>
+            <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
+            <li><strong>With Your Consent:</strong> When you explicitly authorize data sharing</li>
+          </ul>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">6. Your Rights and Choices</h2>
+          
+          <p className="mb-4">You have the right to:</p>
+          <ul className="list-disc ml-6">
+            <li>Access your personal data</li>
+            <li>Update or correct your information</li>
+            <li>Delete your account and data</li>
+            <li>Export your data (data portability)</li>
+            <li>Opt-out of non-essential communications</li>
+          </ul>
+
+          <h3 className="text-xl font-semibold mb-3 mt-6">How to Exercise Your Rights:</h3>
+          <ul className="list-disc ml-6">
+            <li><strong>Account Settings:</strong> Update information in your dashboard</li>
+            <li><strong>Contact Us:</strong> Email info@pixelsdigital.com</li>
+            <li><strong>Delete Account:</strong> Use account deletion feature or contact support</li>
+          </ul>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">7. Multi-Tenant Data Isolation</h2>
+          <p>We operate a multi-tenant platform where:</p>
+          <ul className="list-disc ml-6">
+            <li>Each business account (tenant) has isolated data</li>
+            <li>Tenant data is segregated using unique identifiers</li>
+            <li>No tenant can access another tenant's data</li>
+            <li>Administrative access is strictly controlled</li>
+          </ul>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">8. Changes to This Privacy Policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date. We encourage you to review this policy periodically.
+          </p>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">9. Contact Us</h2>
+          <p>If you have questions, concerns, or requests regarding this Privacy Policy:</p>
+          <div className="bg-gray-50 p-4 rounded-lg mt-4">
+            <p><strong>Email:</strong> info@pixelsdigital.com</p>
+            <p><strong>Website:</strong> <a href="https://pixelsagency.vercel.app" className="text-primary hover:underline">https://pixelsagency.vercel.app</a></p>
+          </div>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">10. Legal Compliance</h2>
+          
+          <h3 className="text-xl font-semibold mb-3">GDPR Compliance (EU Users)</h3>
+          <p>Under GDPR, you have rights to access, rectify, erase, restrict processing, data portability, object to processing, and withdraw consent.</p>
+
+          <h3 className="text-xl font-semibold mb-3 mt-6">CCPA Compliance (California Users)</h3>
+          <p>California residents have rights to know what data is collected, opt-out of sale, access data, and request deletion.</p>
+
+          <h3 className="text-xl font-semibold mb-3 mt-6">India IT Rules Compliance</h3>
+          <p>We comply with Information Technology Act, 2000 and associated rules for Indian users.</p>
+        </section>
+
+        <div className="border-t pt-6 mt-12">
+          <p className="text-sm text-gray-600">
+            <strong>Last Updated:</strong> November 1, 2025<br />
+            <strong>Version:</strong> 1.0
+          </p>
+          <p className="text-sm text-gray-600 mt-4">
+            © 2025 Pixels Digital. All rights reserved.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
