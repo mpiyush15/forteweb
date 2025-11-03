@@ -55,6 +55,10 @@ export const sidebarLinks = [
         label: "📊 Reports",
         href: "/dashboard/social/reports",
       },
+      {
+        label: "⚙️ Connect Facebook",
+        href: "/dashboard/settings/facebook",
+      },
     ],
   },
   {

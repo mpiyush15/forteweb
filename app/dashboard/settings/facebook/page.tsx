@@ -35,19 +35,11 @@ export default function FacebookBusinessSettings() {
             <li>Business Analytics</li>
           </ul>
 
-          <Link 
-  href="/admin" 
-  target="_blank"
-  className="inline-flex items-center justify-center px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
->
-  Open CMS
-</Link>
-
 
           <button
             onClick={handleConnect}
             disabled={loading}
-            className="btn btn--primary"
+            className="btn bg-blue-300 m-3 px-3 p-3 rounded-xl"
           >
             {loading ? 'Connecting...' : 'Connect Facebook Business'}
           </button>
