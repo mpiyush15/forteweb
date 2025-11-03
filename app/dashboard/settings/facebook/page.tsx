@@ -2,7 +2,6 @@
 
 import { useSession, signIn } from 'next-auth/react';
 import { useState } from 'react';
-import Link from 'next/link';
 
 export default function FacebookBusinessSettings() {
   const { data: session } = useSession();
